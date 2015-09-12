@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+if [ ! -e /usr/lib/libcuteradio.so.1.0.0 ]
+    then
+        ln -s /opt/lib/libcuteradio.so.1.0.0 /usr/lib/libcuteradio.so.1.0.0
+        ln -s /usr/lib/libcuteradio.so.1.0.0 /usr/lib/libcuteradio.so
+        ln -s /usr/lib/libcuteradio.so.1.0.0 /usr/lib/libcuteradio.so.1
+        ln -s /usr/lib/libcuteradio.so.1.0.0 /usr/lib/libcuteradio.so.1.0
+fi
+
+if [ ! -e  /usr/lib/qt4/imports/CuteRadio ]
+    then
+        ln -s /opt/lib/qt4/imports/CuteRadio/ /usr/lib/qt4/imports/
+fi
+
+exit 0

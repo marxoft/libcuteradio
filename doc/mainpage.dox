@@ -1,0 +1,13 @@
+/*!
+    \mainpage notitle
+    
+    \section intro-section Introduction
+    
+    libcuteradio is a Qt/C++ library and QML module used for making requests to the cuteRadio API.
+    
+    \section start-section Getting Started
+    
+    \subsection source-section Source Code
+    
+    The source code can be found at <a href="https://github.com/marxoft/libcuteradio">GitHub</a>.
+*/

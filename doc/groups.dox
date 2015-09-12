@@ -1,0 +1,7 @@
+/*! 
+    \defgroup models Data Models
+    \brief Classes providing data models for use with item views.
+    
+    \defgroup requests Requests
+    \brief Classes for making requests to the cuteRadio Data API.
+*/
