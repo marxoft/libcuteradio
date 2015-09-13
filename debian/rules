@@ -14,7 +14,7 @@ build: build-stamp
 
 build-stamp: configure-stamp
 	dh_testdir
-	qmake INSTALL_SRC_PREFIX=$(CURDIR)/debian/qsoundcloud/opt INSTALL_QML_PREFIX=$(CURDIR)/debian/qsoundcloud-qml/opt && $(MAKE)
+	qmake INSTALL_SRC_PREFIX=$(CURDIR)/debian/libcuteradio/opt INSTALL_QML_PREFIX=$(CURDIR)/debian/libcuteradio-qml/opt && $(MAKE)
 	touch build-stamp
 
 clean:
@@ -26,10 +26,10 @@ clean:
 
 install-src:
 	cd src && $(MAKE) install
-	mkdir -p debian/qsoundcloud-dev/usr/
-	mkdir -p debian/qsoundcloud-dev/opt/lib/
-	mv debian/qsoundcloud/opt/include debian/qsoundcloud-dev/usr/
-	mv debian/qsoundcloud/opt/lib/libqsoundcloud.prl debian/qsoundcloud-dev/opt/lib/
+	mkdir -p debian/libcuteradio-dev/usr/
+	mkdir -p debian/libcuteradio-dev/opt/lib/
+	mv debian/libcuteradio/opt/include debian/libcuteradio-dev/usr/
+	mv debian/libcuteradio/opt/lib/libcuteradio.prl debian/libcuteradio-dev/opt/lib/
 	dh_testdir
 	dh_testroot
 	dh_install
