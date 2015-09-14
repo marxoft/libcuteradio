@@ -313,7 +313,6 @@ void ResourcesModel::reload() {
             d->roles.clear();
         }
         
-        d->dynamicRoles = false;
         d->request->get(d->resource.startsWith('/') ? d->resource : "/" + d->resource, d->filters);
         emit statusChanged(d->request->status());
     }
