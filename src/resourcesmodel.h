@@ -37,8 +37,6 @@ class CUTERADIOSHARED_EXPORT ResourcesModel : public Model
     Q_PROPERTY(CuteRadio::ResourcesRequest::Error error READ error NOTIFY statusChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY statusChanged)
     
-    Q_ENUMS(CuteRadio::ResourcesRequest::Status CuteRadio::ResourcesRequest::Error)
-                
 public: 
     explicit ResourcesModel(QObject *parent = 0);
 
@@ -72,7 +70,7 @@ Q_SIGNALS:
     void accessTokenChanged();
     void resourceChanged();
     void filtersChanged();
-    void statusChanged(CuteRadio::ResourcesRequest::Status status);
+    void statusChanged(CuteRadio::ResourcesRequest::Status s);
     
 protected:        
     Q_DECLARE_PRIVATE(ResourcesModel)

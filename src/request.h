@@ -146,7 +146,7 @@ Q_SIGNALS:
     void dataChanged();
     void headersChanged();
     void operationChanged();
-    void statusChanged(Status status);
+    void statusChanged(Status s);
     void finished();
     
 protected:
