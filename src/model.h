@@ -27,7 +27,7 @@ class ModelPrivate;
 class CUTERADIOSHARED_EXPORT Model : public QAbstractListModel
 {
     Q_OBJECT
-    
+
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
                 
 public:

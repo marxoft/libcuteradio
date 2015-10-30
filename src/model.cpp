@@ -159,7 +159,7 @@ void Model::append(const QMap<int, QVariant> &roles) {
 }
 
 /*!
-    \brief Inserts an item before \index using the data in \a roles.
+    \brief Inserts an item before \a index using the data in \a roles.
     
     The item is appended if \a index is invalid.
 */
@@ -208,7 +208,7 @@ bool Model::remove(const QModelIndex &index) {
 /*!
     \brief Returns the row of the first item where its \a property matches \a value.
     
-    If no matching items exists, -1 is returned.
+    If no matching item exists, -1 is returned.
 */
 int Model::find(const QString &property, const QVariant &value) const {
     Q_D(const Model);
