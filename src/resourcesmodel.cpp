@@ -112,7 +112,7 @@ ResourcesModel::ResourcesModel(QObject *parent) :
     
     The access token is required when accessing protected resources.
     
-    \as ResourcesRequest::accessToken
+    \sa ResourcesRequest::accessToken
 */
 
 /*!
