@@ -41,22 +41,19 @@ inline void addUrlQueryItems(QUrlQuery *query, const QVariantMap &map) {
     qDebug() << "addUrlQueryItems:" << query << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
-    
+        
     while (iterator.hasNext()) {
         iterator.next();
         
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            query->addQueryItem(iterator.key(), iterator.value().toString());
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            query->addQueryItem(iterator.key(), QtJson::Json::serialize(iterator.value()));
             break;
         }
-        
-        query->addQueryItem(iterator.key(), value);
     }
 }
 
@@ -65,22 +62,19 @@ inline void addRequestHeaders(QNetworkRequest *request, const QVariantMap &map) 
     qDebug() << "addRequestHeaders:" << request->url() << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
-    
+        
     while (iterator.hasNext()) {
         iterator.next();
         
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            request->setRawHeader(iterator.key().toUtf8(), iterator.value().toByteArray());
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            request->setRawHeader(iterator.key().toUtf8(), QtJson::Json::serialize(iterator.value()));
             break;
         }
-        
-        request->setRawHeader(iterator.key().toUtf8(), value);
     }
 }
 
@@ -89,22 +83,19 @@ inline void addPostBody(QString *body, const QVariantMap &map) {
     qDebug() << "addPostBody:" << body << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
-    
+        
     while (iterator.hasNext()) {
         iterator.next();
         
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            body->append(iterator.key() + "=" + iterator.value().toString());
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            body->append(iterator.key() + "=" + QtJson::Json::serialize(iterator.value()));
             break;
-        }
-        
-        body->append(iterator.key() + "=" + value);
+        }        
         
         if (iterator.hasNext()) {
             body->append("&");
@@ -117,25 +108,22 @@ inline void addUrlQueryItems(QUrl *url, const QVariantMap &map) {
     qDebug() << "addUrlQueryItems:" << url << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
-    
+        
     while (iterator.hasNext()) {
         iterator.next();
         
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            url->addQueryItem(iterator.key(), iterator.value().toString());
             break;
         case QVariant::Double: // In QtQuick 1.x, integers declared in JS are passed as doubles.
-            value = QByteArray::number(iterator.value().toInt());
+            url->addQueryItem(iterator.key(), QString::number(iterator.value().toInt()));
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            url->addQueryItem(iterator.key(), QtJson::Json::serialize(iterator.value()));
             break;
         }
-        
-        url->addQueryItem(iterator.key(), value);
     }
 }
 
@@ -144,25 +132,22 @@ inline void addRequestHeaders(QNetworkRequest *request, const QVariantMap &map) 
     qDebug() << "addRequestHeaders:" << request->url() << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
-    
+        
     while (iterator.hasNext()) {
         iterator.next();
         
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            request->setRawHeader(iterator.key().toUtf8(), iterator.value().toByteArray());
             break;
         case QVariant::Double: // In QtQuick 1.x, integers declared in JS are passed as doubles.
-            value = QByteArray::number(iterator.value().toInt());
+            request->setRawHeader(iterator.key().toUtf8(), QByteArray::number(iterator.value().toInt()));
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            request->setRawHeader(iterator.key().toUtf8(), QtJson::Json::serialize(iterator.value()));
             break;
         }
-        
-        request->setRawHeader(iterator.key().toUtf8(), value);
     }
 }
 
@@ -171,7 +156,6 @@ inline void addPostBody(QString *body, const QVariantMap &map) {
     qDebug() << "addPostBody:" << body << map;
 #endif
     QMapIterator<QString, QVariant> iterator(map);
-    QByteArray value;
     
     while (iterator.hasNext()) {
         iterator.next();
@@ -179,17 +163,15 @@ inline void addPostBody(QString *body, const QVariantMap &map) {
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toString().toUtf8();
+            body->append(iterator.key() + "=" + iterator.value().toString());
             break;
         case QVariant::Double: // In QtQuick 1.x, integers declared in JS are passed as doubles.
-            value = QByteArray::number(iterator.value().toInt());
+            body->append(iterator.key() + "=" + QString::number(iterator.value().toInt()));
             break;
         default:
-            value = QtJson::Json::serialize(iterator.value());
+            body->append(iterator.key() + "=" + QtJson::Json::serialize(iterator.value()));
             break;
-        }
-        
-        body->append(iterator.key() + "=" + value);
+        }        
         
         if (iterator.hasNext()) {
             body->append("&");
