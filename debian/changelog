@@ -1,5 +1,11 @@
+libcuteradio (0.0.2) unstable; urgency=low
+
+  * Prevent further network requests when status is Loading.
+
+ -- Stuart Howarth <showarth@marxoft.co.uk>  Thu, 12 Nov 2015 15:04:43 +0100
+
 libcuteradio (0.0.1) unstable; urgency=low
 
   * Initial release.
 
- -- Stuart Howarth <showarth@marxoft.co.uk>  Thu, 10 Sep 2015 16:01:52 +0100
+ -- Stuart Howarth <showarth@marxoft.co.uk>  Sun, 13 Sep 2015 01:01:52 +0100
