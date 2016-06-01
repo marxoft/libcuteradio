@@ -334,13 +334,13 @@ void ResourcesModelPrivate::_q_onRequestFinished() {
     Q_Q(ResourcesModel);
 
     if (request->status() == ResourcesRequest::Ready) {
-        QVariantMap result = request->result().toMap();
+        const QVariantMap result = request->result().toMap();
     
         if (!result.isEmpty()) {
             next = result.value("next").toString();
             previous = result.value("previous").toString();
         
-            QVariantList list = result.value("items").toList();
+            const QVariantList list = result.value("items").toList();
         
             if (!list.isEmpty()) {
                 if (roles.isEmpty()) {
@@ -349,7 +349,7 @@ void ResourcesModelPrivate::_q_onRequestFinished() {
                 
                 q->beginInsertRows(QModelIndex(), items.size(), items.size() + list.size() - 1);
                 
-                foreach (QVariant item, list) {
+                foreach (const QVariant &item, list) {
                     items << item.toMap();
                 }
                 
