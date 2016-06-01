@@ -363,7 +363,7 @@ void ModelPrivate::setRoleNames(const QVariantMap &item) {
     roles.clear();
     int role = Qt::UserRole + 1;
     
-    foreach (QString key, item.uniqueKeys()) {
+    foreach (const QString &key, item.uniqueKeys()) {
         roles[role] = key.toUtf8();
         role++;
     }
