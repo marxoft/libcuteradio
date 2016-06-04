@@ -129,6 +129,7 @@ void ResourcesModel::setAccessToken(const QString &token) {
     Q_D(ResourcesModel);
     
     d->request->setAccessToken(token);
+    clear();
 }
 
 /*!
@@ -174,6 +175,7 @@ void ResourcesModel::setResource(const QString &name) {
     if (name != resource()) {
         Q_D(ResourcesModel);
         d->resource = name;
+        clear();
         emit resourceChanged();
     }
 }
@@ -192,6 +194,7 @@ void ResourcesModel::setFilters(const QVariantMap &map) {
     Q_D(ResourcesModel);
     
     d->filters = map;
+    clear();
     emit filtersChanged();
 }
 

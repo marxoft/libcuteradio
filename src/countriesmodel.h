@@ -35,6 +35,12 @@ public:
     
     explicit CountriesModel(QObject *parent = 0);
 
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
+    QVariant headerData(int section, Qt::Orientation orientation = Qt::Horizontal, int role = Qt::DisplayRole) const;
+
 private:
     Q_DISABLE_COPY(CountriesModel)
 };

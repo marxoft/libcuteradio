@@ -60,4 +60,38 @@ LanguagesModel::LanguagesModel(QObject *parent) :
 #endif
 }
 
+int LanguagesModel::columnCount(const QModelIndex &) const {
+    return 2;
+}
+
+QVariant LanguagesModel::data(const QModelIndex &index, int role) const {
+    if (role == Qt::DisplayRole) {
+        switch (index.column()) {
+        case 0:
+            return ResourcesModel::data(index, NameRole);
+        case 1:
+            return ResourcesModel::data(index, CountRole);
+        default:
+            break;
+        }
+    }
+
+    return ResourcesModel::data(index, role);
+}
+
+QVariant LanguagesModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole)) {
+        switch (section) {
+        case 0:
+            return tr("Name");
+        case 1:
+            return tr("Stations");
+        default:
+            break;
+        }
+    }
+
+    return QVariant();
+}
+
 }

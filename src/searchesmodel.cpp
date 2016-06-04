@@ -60,4 +60,38 @@ SearchesModel::SearchesModel(QObject *parent) :
 #endif
 }
 
+int SearchesModel::columnCount(const QModelIndex &) const {
+    return 2;
+}
+
+QVariant SearchesModel::data(const QModelIndex &index, int role) const {
+    if (role == Qt::DisplayRole) {
+        switch (index.column()) {
+        case 0:
+            return ResourcesModel::data(index, KeywordRole);
+        case 1:
+            return ResourcesModel::data(index, CountRole);
+        default:
+            break;
+        }
+    }
+
+    return ResourcesModel::data(index, role);
+}
+
+QVariant SearchesModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole)) {
+        switch (section) {
+        case 0:
+            return tr("Keyword");
+        case 1:
+            return tr("Count");
+        default:
+            break;
+        }
+    }
+
+    return QVariant();
+}
+
 }
