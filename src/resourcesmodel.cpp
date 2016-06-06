@@ -103,7 +103,7 @@ ResourcesModel::ResourcesModel(QObject *parent) :
 
     d->request = new ResourcesRequest(this);
     connect(d->request, SIGNAL(accessTokenChanged()), this, SIGNAL(accessTokenChanged()));
-    connect(d->request, SIGNAL(finished()), this, SLOT(_q_onRequestFinished()));
+    connect(d->request, SIGNAL(finished(CuteRadio::Request*)), this, SLOT(_q_onRequestFinished()));
 }
 
 /*!

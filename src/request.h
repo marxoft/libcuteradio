@@ -146,8 +146,8 @@ Q_SIGNALS:
     void dataChanged();
     void headersChanged();
     void operationChanged();
-    void statusChanged(Status s);
-    void finished();
+    void statusChanged(CuteRadio::Request::Status s);
+    void finished(CuteRadio::Request *request);
     
 protected:
     Request(RequestPrivate &dd, QObject *parent = 0);

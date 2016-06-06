@@ -533,7 +533,7 @@ void Request::post(bool authRequired) {
         d->setStatus(Failed);
         d->setError(ParseError);
         d->setErrorString(tr("Unable to serialize the POST data"));
-        emit finished();
+        emit finished(this);
     }    
 }
 
@@ -580,8 +580,8 @@ void Request::put(bool authRequired) {
         d->setStatus(Failed);
         d->setError(ParseError);
         d->setErrorString(tr("Unable to serialize the PUT data"));
-        emit finished();
-    }    
+        emit finished(this);
+    }
 }
 
 /*!
@@ -768,13 +768,13 @@ void RequestPrivate::_q_onReplyFinished() {
         setStatus(Request::Canceled);
         setError(Request::NoError);
         setErrorString(QString());
-        emit q->finished();
+        emit q->finished(q);
         return;
     default:
         setStatus(Request::Failed);
         setError(Request::Error(e));
         setErrorString(es);
-        emit q->finished();
+        emit q->finished(q);
         return;
     }
     
@@ -789,7 +789,7 @@ void RequestPrivate::_q_onReplyFinished() {
         setErrorString(Request::tr("Unable to parse response"));
     }
         
-    emit q->finished();
+    emit q->finished(q);
 }
 
 }
